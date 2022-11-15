@@ -17,16 +17,17 @@ const store = createStore({
             const userURL = `https://jsonplaceholder.typicode.com/users/${post.userId}`;
             axios
               .get(userURL)
-              .then((res) => {
-                post.name = res.data.name;
+              .then((returnVal) => {
+                post.name = returnVal.data.name;
               })
               .catch((e) => {
                 console.log(e);
               });
           }
+
           setTimeout(() => {
             commit("setPostsData", res.data);
-          }, 1200);
+          }, 1400);
         })
         .catch((e) => {
           console.log(e);
