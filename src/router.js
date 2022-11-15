@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage.vue";
 
 import PostsList from "./pages/PostsList.vue";
 import PostDetails from "./pages/PostDetails.vue";
+import UserDetails from "./pages/UserDetails.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,11 @@ const router = createRouter({
       name: "postDetails",
       path: "/posts/details/:id",
       components: { default: PostDetails },
+    },
+    {
+      name: "userDetauls",
+      path: "/users/:id",
+      components: { default: UserDetails },
     },
     {
       name: "error",

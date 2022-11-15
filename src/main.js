@@ -51,7 +51,6 @@ const store = createStore({
         });
     },
   },
-
   mutations: {
     setPostsData(state, postData) {
       state.posts = postData.map((posts) => {
@@ -82,5 +81,4 @@ const app = createApp(App);
 
 app.use(store);
 app.use(router);
-
 app.mount("#app");

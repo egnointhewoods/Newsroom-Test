@@ -20,24 +20,33 @@ export default {
     return {
       route: useRoute(),
       author: [],
+      post: [],
     };
   },
   computed: {
-    post() {
-      return this.$store.state.posts[this.route.params.id];
-    },
     comments() {
       return this.$store.state.comments;
     },
   },
   mounted() {
     this.$store.dispatch("fetchComments");
-    const authorURL = `https://jsonplaceholder.typicode.com/users/${this.route.params.id}`;
+    const postURL = `https://jsonplaceholder.typicode.com/posts/${this.route.params.id}`;
     axios
-      .get(authorURL)
+      .get(postURL)
       .then((returnVal) => {
         console.log(returnVal.data);
-        this.author = returnVal.data;
+        this.post = returnVal.data;
+        const authorURL = `https://jsonplaceholder.typicode.com/users/${returnVal.data.userId}`;
+        axios
+          .get(authorURL)
+          .then((returnVal) => {
+            console.log(returnVal.data);
+            this.author = returnVal.data;
+          })
+          .catch((e) => {
+            this.state.error = e.message;
+            console.log(e);
+          });
       })
       .catch((e) => {
         this.state.error = e.message;
