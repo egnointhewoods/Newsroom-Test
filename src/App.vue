@@ -3,10 +3,23 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
   name: "App",
+  data() {
+    return {
+      router: useRouter(),
+    };
+  },
   mounted() {
     this.$store.dispatch("fetchPosts");
+
+    setTimeout(() => {
+      if (this.$store.state.error) {
+        console.log("yea dude");
+        this.router.push("/error");
+      }
+    }, 500);
   },
 };
 </script>
