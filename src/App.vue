@@ -1,15 +1,22 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <TheNavbar />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
+import TheNavbar from "./components/TheNavbar.vue";
 export default {
   name: "App",
   data() {
     return {
       router: useRouter(),
     };
+  },
+  components: {
+    TheNavbar,
   },
   mounted() {
     this.$store.dispatch("fetchPosts");
