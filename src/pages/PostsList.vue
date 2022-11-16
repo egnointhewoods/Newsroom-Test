@@ -1,35 +1,45 @@
 <template>
   <div>
     <the-pagination />
-    <router-link
-      v-for="post in posts"
+    <post-card
+      v-for="post in twentyMovies"
       :key="post.id"
-      class="post"
-      :to="'/posts/details/' + post.id"
-    >
+      :title="post.title"
+      :author="post.name"
+    />
+
+    <!-- :to="'/posts/details/' + post.id" -->
+    <!--  >
       <p>{{ post.title }}</p>
       <router-link :to="'/users/' + post.userId">
         <h1>{{ post.name }}</h1>
       </router-link>
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 
 <script>
 import ThePagination from "../components/ThePagination.vue";
+import PostCard from "../components/UI/PostCard.vue";
+
 import { useRoute } from "vue-router";
 export default {
-  components: { ThePagination },
+  components: { ThePagination, PostCard },
   name: "PostsList",
   data() {
     return {
       route: useRoute(),
-      twentyPosts: [],
+      twentyMovies2: [],
     };
   },
   computed: {
     posts() {
       return this.$store.state.posts;
+    },
+    twentyMovies() {
+      return this.$store.getters.getTwentyMovies(
+        Number(this.route.params.page)
+      );
     },
   },
 };

@@ -4,6 +4,10 @@ import axios from "axios";
 import App from "./App.vue";
 import router from "./router.js";
 import { useRoute } from "vue-router";
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
 
 const store = createStore({
   namespaced: true,
@@ -51,6 +55,22 @@ const store = createStore({
         });
     },
   },
+  getters: {
+    getTwentyMovies: (state) => (argument) => {
+      let arr = [];
+
+      for (let i = argument * 20; i >= argument * 20 - 20; i--) {
+        /*  console.log(state.posts[i]);
+        console.log(argument * 20); */
+        if (i !== 100) {
+          console.log(i);
+          arr.push(state.posts[i]);
+        }
+      }
+      console.log(arr);
+      return arr;
+    },
+  },
   mutations: {
     setPostsData(state, postData) {
       state.posts = postData.map((posts) => {
@@ -78,7 +98,11 @@ const store = createStore({
 });
 
 const app = createApp(App);
-
+const vuetify = createVuetify({
+  components,
+  directives,
+});
 app.use(store);
 app.use(router);
+app.use(vuetify);
 app.mount("#app");

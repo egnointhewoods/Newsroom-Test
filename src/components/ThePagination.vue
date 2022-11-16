@@ -1,41 +1,28 @@
 <template>
-  <pagination
-    v-model="page"
-    :records="listings.total"
-    :per-page="listings.per_page"
-    @paginate="paginate"
-    :options="listings.options"
-  />
+  <div class="text-center">
+    <v-pagination
+      @click="logIt"
+      v-model="page"
+      :length="5"
+      :total-visible="5"
+    ></v-pagination>
+  </div>
 </template>
-
 <script>
-import Pagination from "v-pagination-3";
 import { useRouter } from "vue-router";
+
 export default {
-  name: "ThePagination",
-  components: {
-    Pagination,
-  },
   data() {
     return {
       page: 1,
+
       router: useRouter(),
-      listings: {
-        total: 100,
-        per_page: 20,
-      },
     };
   },
   methods: {
-    paginate(e) {
-      // alert(e);
-      this.router.push("/posts/" + e);
+    logIt() {
+      this.router.push("/posts/" + this.page);
     },
   },
 };
 </script>
-<style scoped>
-li {
-  display: inline;
-}
-</style>
