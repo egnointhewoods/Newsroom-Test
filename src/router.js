@@ -10,10 +10,10 @@ import UserDetails from "./pages/UserDetails.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: "/posts" },
+    { path: "/", redirect: "/posts/1" },
     {
       name: "posts",
-      path: "/posts",
+      path: "/posts/:page",
       components: { default: PostsList },
     },
     {

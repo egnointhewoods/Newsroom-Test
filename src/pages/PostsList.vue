@@ -1,5 +1,6 @@
 <template>
   <div>
+    <the-pagination />
     <router-link
       v-for="post in posts"
       :key="post.id"
@@ -15,8 +16,17 @@
 </template>
 
 <script>
+import ThePagination from "../components/ThePagination.vue";
+import { useRoute } from "vue-router";
 export default {
+  components: { ThePagination },
   name: "PostsList",
+  data() {
+    return {
+      route: useRoute(),
+      twentyPosts: [],
+    };
+  },
   computed: {
     posts() {
       return this.$store.state.posts;

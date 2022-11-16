@@ -47,13 +47,13 @@
       <span class="close" @click="toggleMenu">X</span>
       <ul class="nav-ul">
         <li class="nav-li">
-          <router-link to="/posts" class="nav--link"> Posts </router-link>
+          <router-link to="/posts/1" class="nav--link"> Posts </router-link>
         </li>
         <li class="nav-li">
-          <router-link to="/posts" class="nav--link"> Posts </router-link>
+          <router-link to="/posts/1" class="nav--link"> Posts </router-link>
         </li>
         <li class="nav-li">
-          <router-link to="/posts" class="nav--link"> Users </router-link>
+          <router-link to="/posts/1" class="nav--link"> Posts </router-link>
         </li>
       </ul>
     </nav>
