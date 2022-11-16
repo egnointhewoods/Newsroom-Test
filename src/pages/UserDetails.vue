@@ -1,17 +1,29 @@
 <template>
-  <div>
-    <h1>{{ user.name }}</h1>
-    <h2>{{ user.username }}</h2>
-    <h2>{{ user.email }}</h2>
-    <h2>{{ user.phone }}</h2>
-    <p v-for="post in userPosts" :key="post.id">{{ post.id }}</p>
+  <div class="userDetails">
+    <h1>Name: {{ user.name }}</h1>
+    <h2>Username: {{ user.username }}</h2>
+    <h2>Email: {{ user.email }}</h2>
+    <h2>Phone: {{ user.phone }}</h2>
+    <br />
+    <h2>{{ user.name }}'s Posts:</h2>
+
+    <post-card
+      v-for="userPosts in userPosts"
+      :key="userPosts.id"
+      :title="userPosts.title"
+      :author="userPosts.name"
+      :id="userPosts.id"
+      :userId="userPosts.userId"
+    />
   </div>
 </template>
 
 <script>
 import { useRoute } from "vue-router";
 import axios from "axios";
+import PostCard from "../components/UI/PostCard.vue";
 export default {
+  components: { PostCard },
   name: "PostsList",
   data() {
     return {
@@ -48,4 +60,19 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.userDetails {
+  text-align: start;
+  margin: 50px 200px;
+}
+@media (max-width: 1050px) {
+  .userDetails {
+    margin: 50px 150px !important;
+  }
+}
+@media (max-width: 900px) {
+  .userDetails {
+    margin: 50px 20px !important;
+  }
+}
+</style>

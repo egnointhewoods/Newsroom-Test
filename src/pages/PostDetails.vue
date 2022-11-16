@@ -1,19 +1,21 @@
 <template>
   <div v-if="author && comments">
-    <p>{{ post.title }}</p>
-    <p>{{ post.body }}</p>
-    <p>By</p>
-    <h1>{{ author.name }}</h1>
-    <h2>{{ author.email }}</h2>
-    <hr />
-    <button>Show More</button>
-    <p v-for="comment in comments" :key="comment.id">{{ comment.name }}</p>
+    <PostCard
+      :title="post.title"
+      :body="post.body"
+      :author="author.name"
+      :authorEmail="author.email"
+      :comments="comments"
+      :userId="author.id"
+      :detailed="true"
+    />
   </div>
 </template>
 
 <script>
 import { useRoute } from "vue-router";
 import axios from "axios";
+import PostCard from "@/components/UI/PostCard.vue";
 export default {
   name: "PostsList",
   data() {
@@ -23,6 +25,7 @@ export default {
       post: [],
     };
   },
+  components: { PostCard },
 
   computed: {
     comments() {

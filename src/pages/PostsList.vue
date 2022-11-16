@@ -6,6 +6,8 @@
       :key="post.id"
       :title="post.title"
       :author="post.name"
+      :id="post.id"
+      :userId="post.userId"
     />
 
     <!-- :to="'/posts/details/' + post.id" -->
